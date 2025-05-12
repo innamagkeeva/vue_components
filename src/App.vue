@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TemplateSyntax from '@/components/TemplateSyntax.vue'
+</script>
 
 <template>
-  <h1>Заголовок</h1>
+  <TemplateSyntax></TemplateSyntax>
 </template>
-
-<style></style>
