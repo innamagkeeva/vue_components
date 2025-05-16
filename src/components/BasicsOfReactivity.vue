@@ -1,0 +1,39 @@
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+
+const message = ref('Инна!')
+
+type TypeMaster = {
+  name: string
+  age: number
+  experience: number
+}
+const master = reactive<TypeMaster>({
+  name: 'Инна',
+  age: 35,
+  experience: 3,
+})
+
+function changeName(): void {
+  message.value = 'Инночка!'
+}
+
+function changeMasterInfo(): void {
+  master.name = 'Инночка'
+  master.age = 46
+  master.experience = 20
+}
+</script>
+<template>
+  <div>
+    <h1>{{ message }}</h1>
+    <button @click="changeName">изменить имя</button>
+  </div>
+  <div>
+    <h2>информация о мастере:</h2>
+    <p>Имя: {{ master.name }}</p>
+    <p>Возраст: {{ master.age }}</p>
+    <p>Стаж: {{ master.experience }}</p>
+    <button @click="changeMasterInfo">изменить информацию</button>
+  </div>
+</template>
