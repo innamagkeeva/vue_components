@@ -3,23 +3,23 @@ import { reactive, ref } from 'vue'
 
 const message = ref('Инна!')
 
-type TypeMaster = {
+interface TypeMaster {
   name: string
   age: number
   experience: number
 }
-const master = reactive<TypeMaster>({
+const master: TypeMaster = reactive({
   name: 'Инна',
   age: 35,
   experience: 3,
 })
 
 function changeName(): void {
-  message.value = 'Инночка!'
+  message.value = 'Инн!'
 }
 
 function changeMasterInfo(): void {
-  master.name = 'Инночка'
+  master.name = 'Инн'
   master.age = 46
   master.experience = 20
 }
