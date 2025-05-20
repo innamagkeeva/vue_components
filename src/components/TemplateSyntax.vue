@@ -30,7 +30,16 @@ function deleteSign(): void {
   </div>
 </template>
 
-<style>
+<style scoped>
+.wrapper {
+  width: 500px;
+  height: 120px;
+  border: 1px solid red;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  padding: 10px 20px;
+}
+
 .greetings {
   color: red;
 }
