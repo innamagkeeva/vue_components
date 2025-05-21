@@ -36,7 +36,7 @@ function deleteSign(): void {
   height: 120px;
   border: 1px solid red;
   margin: 0 auto;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   padding: 10px 20px;
 }
 

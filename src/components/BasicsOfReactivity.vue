@@ -46,5 +46,6 @@ function changeMasterInfo(): void {
   border: 1px solid green;
   margin: 0 auto;
   padding: 10px 20px;
+  margin-bottom: 3px;
 }
 </style>
