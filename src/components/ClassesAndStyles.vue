@@ -87,7 +87,7 @@ const computedStyle = computed(() => ({
     Инлайн-стили.Объектный синтаксис
   </div>
   <div
-    class="cloth"
+    class="cloth margin-bottom"
     :style="computedStyle"
   >
     Инлайн-стили. Вычисляемые свойства
@@ -111,5 +111,9 @@ const computedStyle = computed(() => ({
 
 .text-danger {
   color: red;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
 }
 </style>

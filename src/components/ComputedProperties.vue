@@ -32,7 +32,7 @@ const experience = computed(() => {
   height: 180px;
   border: 1px solid blue;
   margin: 0 auto;
-  margin-bottom: 3px;
+  margin-bottom: 20px;
   padding: 10px 20px;
 }
 </style>
