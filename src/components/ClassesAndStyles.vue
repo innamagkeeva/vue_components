@@ -37,18 +37,18 @@ const objectClass = computed<BasClassObject>(() => ({
 
 const activeColor = ref<string>('orange')
 const fontSize = ref<number>(30)
-const height = ref<number>(43)
+const height = ref<number>(60)
 
 //ВОПРОС: почему в стилях тип вставляется в reactive, а в классах в сонстанту? Это я определила методом тыка, потому что как в классе - выдавало ошибку.
 const styleObject = reactive<BasStyleObject>({
   color: 'blue',
   fontSize: '22px',
-  height: '31px',
+  height: '50px',
 })
 
 const colorComputed = ref<string>('saddlebrown')
 const fontSizeComputed = ref<string>('24px')
-const heightComputed = ref<string>('37px')
+const heightComputed = ref<string>('53px')
 const backgroundColorComputed = ref<string>('slategray')
 
 const computedStyle = computed(() => ({
@@ -96,7 +96,7 @@ const computedStyle = computed(() => ({
 <style scoped>
 .cloth {
   width: 500px;
-  height: 20px;
+  height: 40px;
   font-size: 17px;
   border: 3px solid hotpink;
   margin: 0 auto;

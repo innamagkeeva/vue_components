@@ -21,7 +21,7 @@ const type = ref('') //Это же не нужно типизировать? п�
   </div>
   <div
     class="circuit"
-    style="height: 285px"
+    style="height: 265px"
   >
     <p
       class="title"
@@ -70,7 +70,7 @@ const type = ref('') //Это же не нужно типизировать? п�
 <style>
 .cloth {
   width: 400px;
-  height: 20px;
+  height: 45px;
   font-size: 19px;
   border: 3px solid hotpink;
   margin: 0 auto;
@@ -89,7 +89,7 @@ const type = ref('') //Это же не нужно типизировать? п�
   text-align: center;
   border: 3px solid hotpink;
   width: 400px;
-  height: 70px;
+  height: 75px;
   padding-top: 10px;
   margin-bottom: 20px;
 }
@@ -105,8 +105,8 @@ const type = ref('') //Это же не нужно типизировать? п�
   text-align: center;
   border: 1px solid yellowgreen;
   width: 200px;
-  height: 50px;
-  padding-top: 20px;
+  height: 42px;
+  padding: 10px;
 }
 
 .circuit {

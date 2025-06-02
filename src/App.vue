@@ -15,4 +15,8 @@ import ConditionalRendering from '@/components/ConditionalRendering.vue'
     <ConditionalRendering></ConditionalRendering>
   </div>
 </template>
-<style></style>
+<style>
+* {
+  box-sizing: border-box;
+}
+</style>

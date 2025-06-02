@@ -1,41 +1,37 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 
-const message = ref('Инна!')
+const message = ref<string>('Инна')
 
 interface TypeMaster {
-  name: string
-  age: number
-  experience: number
+  status: string
+  experience: string
 }
 const master: TypeMaster = reactive({
-  name: 'Инна',
-  age: 35,
-  experience: 3,
+  status: 'мастер',
+  experience: 'высокий',
 })
 
 function changeName(): void {
-  message.value = 'Инн!'
+  message.value = message.value === 'Инна' ? 'Магкеева Инна' : 'Инна'
 }
 
 function changeMasterInfo(): void {
-  master.name = 'Инн'
-  master.age = 46
-  master.experience = 20
+  master.status = 'Мужской мастер'
+  master.experience = 'более 20 лет'
 }
 </script>
 <template>
   <div class="wrapper">
     <div>
       <h1>{{ message }}</h1>
-      <button @click="changeName">изменить имя</button>
+      <button @click="changeName">показать полное имя</button>
     </div>
     <div>
       <h2>информация о мастере:</h2>
-      <p>Имя: {{ master.name }}</p>
-      <p>Возраст: {{ master.age }}</p>
+      <p>Статус: {{ master.status }}</p>
       <p>Стаж: {{ master.experience }}</p>
-      <button @click="changeMasterInfo">изменить информацию</button>
+      <button @click="changeMasterInfo">уточнить информацию</button>
     </div>
   </div>
 </template>
