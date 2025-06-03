@@ -4,19 +4,41 @@ import BasicsOfReactivity from '@/components/BasicsOfReactivity.vue'
 import ComputedProperties from '@/components/ComputedProperties.vue'
 import ClassesAndStyles from '@/components/ClassesAndStyles.vue'
 import ConditionalRendering from '@/components/ConditionalRendering.vue'
+import RenderingLists from '@/components/RenderingLists.vue'
 </script>
 
 <template>
   <div>
-    <TemplateSyntax></TemplateSyntax>
-    <BasicsOfReactivity></BasicsOfReactivity>
-    <ComputedProperties></ComputedProperties>
-    <ClassesAndStyles></ClassesAndStyles>
-    <ConditionalRendering></ConditionalRendering>
+    <TemplateSyntax />
+    <BasicsOfReactivity />
+    <ComputedProperties />
+    <ClassesAndStyles />
+    <ConditionalRendering />
+    <RenderingLists />
   </div>
 </template>
 <style>
-* {
+html {
   box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+p,
+ul,
+li {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
 </style>

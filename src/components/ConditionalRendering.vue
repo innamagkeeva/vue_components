@@ -82,6 +82,7 @@ const type = ref('') //Это же не нужно типизировать? п�
   text-align: center;
   color: darkblue;
   font-size: 40px;
+  margin-bottom: 10px;
 }
 
 .selectClass {
@@ -115,5 +116,6 @@ const type = ref('') //Это же не нужно типизировать? п�
   border: 2px solid green;
   margin: 0 auto;
   margin-bottom: 10px;
+  padding: 10px 20px;
 }
 </style>
