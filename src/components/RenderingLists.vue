@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 interface City {
   city: string
 }
@@ -10,6 +10,10 @@ interface Hairstyles {
   numberOfCopies: number
 }
 
+interface Color {
+  color: string
+}
+
 const title = ref<string>('Отрисовка списков')
 const cities = ref<City[]>([{ city: 'Москва' }, { city: 'Владикавказ' }])
 const country = ref<string>('Россия')
@@ -18,6 +22,12 @@ const myHairstyles: Hairstyles = reactive({
   title: 'Техники стрижек',
   publishingHouse: 'Тренд',
   numberOfCopies: 500,
+})
+const colors = reactive<Color[]>([{ color: 'white' }, { color: 'blue' }, { color: 'yellow' }])
+
+const animals = ref<string[]>(['тигр', 'кенгуру', 'лев', 'пингвин'])
+const evenAnimals = computed(() => {
+  return animals.value.filter((animal) => animal.length < 5)
 })
 </script>
 
@@ -91,6 +101,34 @@ const myHairstyles: Hairstyles = reactive({
       :key="n"
       >{{ n }}</span
     >
+    <p class="title">v-for и template</p>
+    <ul>
+      <template
+        v-for="(color, index) in colors"
+        :key="color"
+      >
+        <li>{{ color.color }}</li>
+        <li
+          v-if="index < colors.length - 1"
+          class="divider"
+          role="presentation"
+        ></li>
+      </template>
+    </ul>
+    <p
+      class="title"
+      style="padding: 0 30px"
+    >
+      Отображение отфильтрованных/отсортированных результатов
+    </p>
+    <ul>
+      <li
+        v-for="(animal, index) in evenAnimals"
+        :key="animal"
+      >
+        {{ index }}- {{ animal }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -109,10 +147,15 @@ ul {
 
 .circuit {
   width: 500px;
-  height: 900px;
+  height: 910px;
   margin: 0 auto;
   margin-bottom: 10px;
   border: 3px solid greenyellow;
   padding: 10px 20px;
+}
+
+.divider {
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
 }
 </style>
