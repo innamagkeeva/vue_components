@@ -5,6 +5,7 @@ import ComputedProperties from '@/components/ComputedProperties.vue'
 import ClassesAndStyles from '@/components/ClassesAndStyles.vue'
 import ConditionalRendering from '@/components/ConditionalRendering.vue'
 import RenderingLists from '@/components/RenderingLists.vue'
+import EventHandling from '@/components/EventHandling.vue'
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import RenderingLists from '@/components/RenderingLists.vue'
     <ClassesAndStyles />
     <ConditionalRendering />
     <RenderingLists />
+    <EventHandling />
   </div>
 </template>
 <style>
