@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+type BasModifiers = 'stop' | 'prevent' | 'self' | 'capture' | 'once' | 'passive'
+
 const count = ref<number>(0)
 const name = ref<string>('Влад')
+const modifiers = ref<BasModifiers[]>(['stop', 'prevent', 'self', 'capture', 'once', 'passive'])
 
 function greet(event: Event): void {
   console.log(`Привет ${name.value} !`)
@@ -12,6 +15,13 @@ function greet(event: Event): void {
 }
 
 function say(message: string): void {
+  console.log(message)
+}
+
+function warn(message: string, event: Event): void {
+  if (event) {
+    event.preventDefault()
+  }
   console.log(message)
 }
 </script>
@@ -60,9 +70,25 @@ function say(message: string): void {
       Пока!
     </button>
     <p class="title">Доступ к событию через аргумент в инлайн-обработчиках</p>
+    <button
+      class="p-style"
+      @click="warn('пока нельзя отправить', $event)"
+    >
+      отправить
+    </button>
+    <p class="title">Модификаторы событий</p>
+    <ul>
+      <li
+        v-for="modifier in modifiers"
+        :key="modifier"
+      >
+        . {{ modifier }}
+      </li>
+    </ul>
   </div>
 </template>
-<style scoped>
+
+<style>
 .p-style {
   margin-bottom: 10px;
 }
