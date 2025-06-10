@@ -2,10 +2,33 @@
 import { ref } from 'vue'
 
 type BasModifiers = 'stop' | 'prevent' | 'self' | 'capture' | 'once' | 'passive'
+type BasKeyModifiers =
+  | 'enter'
+  | 'tab'
+  | 'delete'
+  | 'esc'
+  | 'space'
+  | 'up'
+  | 'down'
+  | 'left'
+  | 'right'
+type BasSystemKeyModifiers = 'ctrl' | 'alt' | 'shift' | 'meta'
 
 const count = ref<number>(0)
 const name = ref<string>('Влад')
 const modifiers = ref<BasModifiers[]>(['stop', 'prevent', 'self', 'capture', 'once', 'passive'])
+const keyModifiers = ref<BasKeyModifiers[]>([
+  'enter',
+  'tab',
+  'delete',
+  'esc',
+  'space',
+  'up',
+  'down',
+  'left',
+  'right',
+])
+const systemKeModifiers = ref<BasSystemKeyModifiers[]>(['ctrl', 'alt', 'shift', 'meta'])
 
 function greet(event: Event): void {
   console.log(`Привет ${name.value} !`)
@@ -79,16 +102,52 @@ function warn(message: string, event: Event): void {
     <p class="title">Модификаторы событий</p>
     <ul>
       <li
-        v-for="modifier in modifiers"
+        v-for="(modifier, index) in modifiers"
         :key="modifier"
+        :class="{ 'p-style': index === modifiers.length - 1 }"
       >
         . {{ modifier }}
+      </li>
+    </ul>
+    <p class="title">Модификаторы клавиш. Псевдонимы клавиш</p>
+    <ul>
+      <li
+        v-for="(keyModifier, index) in keyModifiers"
+        :key="keyModifier"
+        :class="{ 'p-style': index === keyModifiers.length - 1 }"
+        style="color: darkred"
+      >
+        . {{ keyModifier }}
+        <span
+          v-if="keyModifier === 'delete'"
+          style="color: brown; margin-left: 4px"
+        >
+          (ловит как «Delete», так и «Backspace»)</span
+        >
+      </li>
+    </ul>
+    <p class="title">Модификаторы системных клавиш</p>
+    <p
+      class="title"
+      style="font-size: 15px"
+    >
+      модификаторы для прослушивания событий мыши или клавиатуры только при зажатой
+      клавиши-модификатора:
+    </p>
+    <ul>
+      <li
+        v-for="(systemKeModifier, index) in systemKeModifiers"
+        :key="systemKeModifier"
+        :class="{ 'p-style': index === systemKeModifiers.length - 1 }"
+        style="color: crimson"
+      >
+        .{{ systemKeModifier }}
       </li>
     </ul>
   </div>
 </template>
 
-<style>
+<style scoped>
 .p-style {
   margin-bottom: 10px;
 }
@@ -102,7 +161,7 @@ function warn(message: string, event: Event): void {
 
 .circuit {
   width: 500px;
-  height: 910px;
+  height: 960px;
   margin: 0 auto;
   margin-bottom: 10px;
   border: 2px solid lightcoral;

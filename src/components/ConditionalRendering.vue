@@ -67,7 +67,7 @@ const type = ref('') //Это же не нужно типизировать? п�
     </div>
   </div>
 </template>
-<style>
+<style scoped>
 .cloth {
   width: 400px;
   height: 45px;
