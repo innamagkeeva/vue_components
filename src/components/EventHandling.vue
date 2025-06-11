@@ -13,6 +13,7 @@ type BasKeyModifiers =
   | 'left'
   | 'right'
 type BasSystemKeyModifiers = 'ctrl' | 'alt' | 'shift' | 'meta'
+type BasMouseButtonModifiers = 'left' | 'right' | 'middle'
 
 const count = ref<number>(0)
 const name = ref<string>('Влад')
@@ -29,6 +30,7 @@ const keyModifiers = ref<BasKeyModifiers[]>([
   'right',
 ])
 const systemKeModifiers = ref<BasSystemKeyModifiers[]>(['ctrl', 'alt', 'shift', 'meta'])
+const mouseButtonModifiers = ref<BasMouseButtonModifiers[]>(['left', 'right', 'middle'])
 
 function greet(event: Event): void {
   console.log(`Привет ${name.value} !`)
@@ -100,6 +102,12 @@ function warn(message: string, event: Event): void {
       отправить
     </button>
     <p class="title">Модификаторы событий</p>
+    <p
+      class="title"
+      style="font-size: 17px"
+    >
+      модификаторы — это постфиксы директивы, отделяемые точкой:
+    </p>
     <ul>
       <li
         v-for="(modifier, index) in modifiers"
@@ -141,9 +149,34 @@ function warn(message: string, event: Event): void {
         :class="{ 'p-style': index === systemKeModifiers.length - 1 }"
         style="color: crimson"
       >
-        .{{ systemKeModifier }}
+        . {{ systemKeModifier }}
       </li>
     </ul>
+    <p class="title">Модификатор .exact</p>
+    <p
+      class="title"
+      style="font-size: 17px"
+    >
+      Модификатор .exact позволяет контролировать
+      <span style="color: red; font-size: 20px">точную</span> комбинацию модификаторов системных
+      клавиш, необходимых для запуска события.
+    </p>
+    <p class="title">Модификаторы кнопок мыши</p>
+    <ul>
+      <li
+        v-for="(mouseButtonModifier, index) in mouseButtonModifiers"
+        :key="mouseButtonModifier"
+        :class="{ 'p-style': index === mouseButtonModifiers.length - 1 }"
+      >
+        . {{ mouseButtonModifier }}
+      </li>
+    </ul>
+    <p
+      class="title"
+      style="font-size: 16px"
+    >
+      Эти модификаторы ограничивают обработчик события только вызовами по определённой кнопке мыши.
+    </p>
   </div>
 </template>
 
@@ -161,7 +194,7 @@ function warn(message: string, event: Event): void {
 
 .circuit {
   width: 500px;
-  height: 960px;
+  height: 1240px;
   margin: 0 auto;
   margin-bottom: 10px;
   border: 2px solid lightcoral;
