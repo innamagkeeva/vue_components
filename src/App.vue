@@ -6,6 +6,7 @@ import ClassesAndStyles from '@/components/ClassesAndStyles.vue'
 import ConditionalRendering from '@/components/ConditionalRendering.vue'
 import RenderingLists from '@/components/RenderingLists.vue'
 import EventHandling from '@/components/EventHandling.vue'
+import WorkingWithForms from '@/components/WorkingWithForms.vue'
 </script>
 
 <template>
@@ -17,6 +18,7 @@ import EventHandling from '@/components/EventHandling.vue'
     <ConditionalRendering />
     <RenderingLists />
     <EventHandling />
+    <WorkingWithForms />
   </div>
 </template>
 <style>
