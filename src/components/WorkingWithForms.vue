@@ -2,18 +2,22 @@
 import { computed, ref } from 'vue'
 type BasChecked = true | false
 type BasCheckedNames = 'Jack' | 'John' | 'Mike'
+type BasSelectedColor = 'Красный' | 'Синий' | 'Зеленый' | 'цвет не выбран'
 
 const message = ref<string>('')
 const multilineMessage = ref<string>('')
 const checked = ref<BasChecked>(true)
 
 const checkedNames = ref<BasCheckedNames[]>([])
+
 const checkedNamesText = computed(() => {
   if (checkedNames.value.length === 0) {
     return 'Никто не выбран'
   }
   return `${checkedNames.value.join(', ')}`
 })
+
+const selectedColor = ref<BasSelectedColor>('цвет не выбран')
 </script>
 <template>
   <h1
@@ -83,12 +87,73 @@ const checkedNamesText = computed(() => {
       >John</label
     >
     <input
+      style="cursor: pointer"
       type="checkbox"
       id="Mike"
       value="Mike"
       v-model="checkedNames"
     />
     <label for="Mike">Mike</label>
+
+    <label class="checkbox-item">
+      <input
+        type="checkbox"
+        value="Duduk"
+        v-model="checkedNames"
+      />
+      Duduk
+    </label>
+    <p class="title">Радиокнопки</p>
+    <p
+      class="title"
+      style="font-size: 16px"
+    >
+      Выберите цвет
+    </p>
+
+    <input
+      type="radio"
+      id="red"
+      name="color"
+      value="Красный"
+      v-model="selectedColor"
+      class="radio-item"
+    />
+    <label
+      for="red"
+      class="radio-label"
+      style="color: red"
+      >красный</label
+    >
+    <input
+      type="radio"
+      id="blue"
+      name="color"
+      value="Синий"
+      v-model="selectedColor"
+      class="radio-item"
+    />
+    <label
+      for="blue"
+      class="radio-label"
+      style="color: blue"
+      >Синий</label
+    >
+    <input
+      type="radio"
+      id="green"
+      name="color"
+      v-model="selectedColor"
+      value="Зеленый"
+      class="radio-item"
+    />
+    <label
+      for="green"
+      class="radio-label"
+      style="color: green"
+      >Зеленый</label
+    >
+    <div>Выбран цвет: {{ selectedColor }}</div>
   </div>
 </template>
 
@@ -102,7 +167,7 @@ const checkedNamesText = computed(() => {
 
 .circuit {
   width: 500px;
-  height: 910px;
+  height: 1200px;
   margin: 0 auto;
   margin-bottom: 10px;
   border: 2px solid cornflowerblue;
@@ -130,5 +195,26 @@ const checkedNamesText = computed(() => {
   width: 30px;
   height: 30px;
   margin: 0 20px 20px 0;
+}
+
+.checkbox-item {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+.radio-item {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.radio-label {
+  font-size: 20px;
+  margin-right: 20px;
 }
 </style>
