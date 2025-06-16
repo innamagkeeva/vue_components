@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 const workingDay = ref<boolean>(false)
 
-const type = ref('') //Это же не нужно типизировать? потому что мы сами ничего не вводим, а только выбираем из возможных вариантов?
+const selectType = ref('') //Это же не нужно типизировать? потому что мы сами ничего не вводим, а только выбираем из возможных вариантов?
 </script>
 <template>
   <h1 class="title">Условная отрисовка</h1>
@@ -31,7 +31,7 @@ const type = ref('') //Это же не нужно типизировать? п�
     </p>
     <div class="selectClass">
       <select
-        v-model="type"
+        v-model="selectType"
         class="selectStyle"
       >
         <option value="">Выберете тип</option>
@@ -43,19 +43,19 @@ const type = ref('') //Это же не нужно типизировать? п�
 
     <div
       class="typeValue"
-      v-if="type === 'A'"
+      v-if="selectType === 'A'"
     >
       Вы выбрали тип A
     </div>
     <div
       class="typeValue"
-      v-else-if="type === 'B'"
+      v-else-if="selectType === 'B'"
     >
       Вы выбрали тип B
     </div>
     <div
       class="typeValue"
-      v-else-if="type === 'C'"
+      v-else-if="selectType === 'C'"
     >
       Вы выбрали тип C
     </div>

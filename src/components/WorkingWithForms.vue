@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 type BasChecked = true | false
 type BasCheckedNames = 'Jack' | 'John' | 'Mike'
 type BasSelectedColor = 'Красный' | 'Синий' | 'Зеленый' | 'цвет не выбран'
+// type BasTypeSelect = '1' | '2' | '3' | '4'
 
 const message = ref<string>('')
 const multilineMessage = ref<string>('')
@@ -18,7 +19,11 @@ const checkedNamesText = computed(() => {
 })
 
 const selectedColor = ref<BasSelectedColor>('цвет не выбран')
+
+const selectType = ref('')
+const typeSelect = ref<string[]>([])
 </script>
+
 <template>
   <h1
     class="title"
@@ -153,7 +158,57 @@ const selectedColor = ref<BasSelectedColor>('цвет не выбран')
       style="color: green"
       >Зеленый</label
     >
-    <div>Выбран цвет: {{ selectedColor }}</div>
+    <div style="margin-bottom: 20px">Выбран цвет: {{ selectedColor }}</div>
+    <p class="title">Выпадающие списки</p>
+    <p
+      class="title"
+      style="font-size: 16px"
+    >
+      Выбор одного варианта из списка:
+    </p>
+    <div class="selectPlace">
+      <select
+        class="SelectStyle"
+        v-model="selectType"
+      >
+        <option
+          disabled
+          value=""
+        >
+          Выберите один из вариантов
+        </option>
+        <option value="A">вариант: A</option>
+        <option value="B">вариант: B</option>
+        <option value="C">вариант: C</option>
+        <option value="D">вариант: D</option>
+      </select>
+    </div>
+    <div class="selectedOption">Выбран вариант: {{ selectType || 'пока ничего не выбрано' }}</div>
+    <p
+      class="title"
+      style="font-size: 16px"
+    >
+      Выбор нескольких вариантов из списка (с привязкой к массиву):
+    </p>
+    <p
+      class="title"
+      style="font-size: 13px"
+    >
+      Для выбора нескольких вариантов необходимо удерживать клавишу Ctrl
+    </p>
+    <div class="selectPlace">
+      <select
+        class="SelectStyle"
+        v-model="typeSelect"
+        multiple
+      >
+        <option value="1">Вариант: 1</option>
+        <option value="2">Вариант: 2</option>
+        <option value="3">Вариант: 3</option>
+        <option value="4">Вариант: 4</option>
+      </select>
+    </div>
+    <div class="selectedOption">Вы выбрали вариант(ы): {{ typeSelect.join(', ') }}</div>
   </div>
 </template>
 
@@ -167,7 +222,7 @@ const selectedColor = ref<BasSelectedColor>('цвет не выбран')
 
 .circuit {
   width: 500px;
-  height: 1200px;
+  height: 1600px;
   margin: 0 auto;
   margin-bottom: 10px;
   border: 2px solid cornflowerblue;
@@ -216,5 +271,28 @@ const selectedColor = ref<BasSelectedColor>('цвет не выбран')
 .radio-label {
   font-size: 20px;
   margin-right: 20px;
+}
+
+.selectPlace {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.SelectStyle {
+  width: 300px;
+  height: 90px;
+  padding: 10px;
+}
+
+.selectedOption {
+  width: 230px;
+  height: 60px;
+  border: 1px solid black;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 </style>
