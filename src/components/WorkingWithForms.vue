@@ -3,7 +3,11 @@ import { computed, ref } from 'vue'
 type BasChecked = true | false
 type BasCheckedNames = 'Jack' | 'John' | 'Mike'
 type BasSelectedColor = 'Красный' | 'Синий' | 'Зеленый' | 'цвет не выбран'
-// type BasTypeSelect = '1' | '2' | '3' | '4'
+type BasTypeSelect = '1' | '2' | '3' | '4'
+interface Option {
+  value: string
+  text: string
+}
 
 const message = ref<string>('')
 const multilineMessage = ref<string>('')
@@ -21,7 +25,14 @@ const checkedNamesText = computed(() => {
 const selectedColor = ref<BasSelectedColor>('цвет не выбран')
 
 const selectType = ref('')
-const typeSelect = ref<string[]>([])
+const typeSelect = ref<BasTypeSelect[]>([])
+
+const selected = ref<string>('A')
+const options = ref<Option[]>([
+  { text: 'один', value: 'A' },
+  { text: 'два', value: 'B' },
+  { text: 'три', value: 'C' },
+])
 </script>
 
 <template>
@@ -209,6 +220,28 @@ const typeSelect = ref<string[]>([])
       </select>
     </div>
     <div class="selectedOption">Вы выбрали вариант(ы): {{ typeSelect.join(', ') }}</div>
+    <p class="title">Динамическое отображение списка опций с помощью v-for:</p>
+    <div class="selectPlace">
+      <select
+        class="SelectStyle"
+        style="height: 50px"
+        v-model="selected"
+      >
+        <option
+          v-for="option in options"
+          :key="option.value"
+          :value="option.value"
+        >
+          {{ option.text }}
+        </option>
+      </select>
+    </div>
+    <div
+      class="selectedOption"
+      style="height: 40px"
+    >
+      Выбрано: {{ selected }}
+    </div>
   </div>
 </template>
 
@@ -222,7 +255,7 @@ const typeSelect = ref<string[]>([])
 
 .circuit {
   width: 500px;
-  height: 1600px;
+  height: 1800px;
   margin: 0 auto;
   margin-bottom: 10px;
   border: 2px solid cornflowerblue;
@@ -283,6 +316,7 @@ const typeSelect = ref<string[]>([])
   width: 300px;
   height: 90px;
   padding: 10px;
+  margin: 0 auto;
 }
 
 .selectedOption {
