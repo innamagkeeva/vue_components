@@ -33,6 +33,14 @@ const options = ref<Option[]>([
   { text: 'два', value: 'B' },
   { text: 'три', value: 'C' },
 ])
+
+const toggle = ref<string>('да')
+
+const choose = ref<null>(null)
+const dynamicTrueValue = ref<string>('статус: Да')
+const dynamicFalseValue = ref<string>('статус: уже нет')
+
+const pick = ref<null>(null)
 </script>
 
 <template>
@@ -43,7 +51,7 @@ const options = ref<Option[]>([
     Работа с формами.
   </h1>
   <div class="circuit">
-    <p class="title">Обычное использование</p>
+    <p class="title">Обычное использование. Текст</p>
     <input
       class="window-style"
       style="height: 24px"
@@ -242,6 +250,56 @@ const options = ref<Option[]>([
     >
       Выбрано: {{ selected }}
     </div>
+    <p class="title">Привязка значений</p>
+    <p
+      class="title"
+      style="color: blueviolet"
+    >
+      Чекбокс
+    </p>
+    <div style="display: flex; font-size: 20px">
+      <input
+        class="checkbox-style"
+        type="checkbox"
+        v-model="toggle"
+        true-value="да"
+        false-value="нет"
+      />
+      <p>Значение: {{ toggle }}</p>
+    </div>
+    <div style="display: flex; font-size: 20px">
+      <input
+        class="checkbox-style"
+        type="checkbox"
+        :true-value="dynamicTrueValue"
+        :false-value="dynamicFalseValue"
+        v-model="choose"
+      />
+      <p>{{ choose }}</p>
+    </div>
+    <p
+      class="title"
+      style="color: blueviolet"
+    >
+      Радиокнопки
+    </p>
+    <div>
+      <input
+        class="radio-item"
+        type="radio"
+        v-model="pick"
+        value="Первый"
+      />
+    </div>
+    <div style="display: flex">
+      <input
+        class="radio-item"
+        type="radio"
+        v-model="pick"
+        value="Второй"
+      />
+    </div>
+    <p style="margin-bottom: 20px">Вы выбрали: {{ pick }}</p>
   </div>
 </template>
 
@@ -255,7 +313,7 @@ const options = ref<Option[]>([
 
 .circuit {
   width: 500px;
-  height: 1800px;
+  height: 2200px;
   margin: 0 auto;
   margin-bottom: 10px;
   border: 2px solid cornflowerblue;
@@ -283,6 +341,7 @@ const options = ref<Option[]>([
   width: 30px;
   height: 30px;
   margin: 0 20px 20px 0;
+  cursor: pointer;
 }
 
 .checkbox-item {
@@ -294,10 +353,10 @@ const options = ref<Option[]>([
 }
 
 .radio-item {
-  width: 15px;
-  height: 15px;
-  margin-right: 10px;
-  margin-bottom: 20px;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+
   cursor: pointer;
 }
 
