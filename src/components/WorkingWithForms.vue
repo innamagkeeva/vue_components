@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 type BasChecked = true | false
-type BasCheckedNames = 'Jack' | 'John' | 'Mike'
+type BasCheckedNames = 'Jack' | 'John' | 'Mike' | 'Duduk'
 type BasSelectedColor = 'Красный' | 'Синий' | 'Зеленый' | 'цвет не выбран'
 type BasTypeSelect = '1' | '2' | '3' | '4'
 interface Option {
   value: string
   text: string
 }
+type BasSelectType = 'A' | 'B' | 'C' | 'D' | ''
+type BasPick = 'Первый' | 'Второй' | null
 
 const message = ref<string>('')
 const multilineMessage = ref<string>('')
@@ -24,7 +26,7 @@ const checkedNamesText = computed(() => {
 
 const selectedColor = ref<BasSelectedColor>('цвет не выбран')
 
-const selectType = ref('')
+const selectType = ref<BasSelectType>('')
 const typeSelect = ref<BasTypeSelect[]>([])
 
 const selected = ref<string>('A')
@@ -36,11 +38,13 @@ const options = ref<Option[]>([
 
 const toggle = ref<string>('да')
 
-const choose = ref<null>(null)
+const choose = ref<string | null>(null)
 const dynamicTrueValue = ref<string>('статус: Да')
 const dynamicFalseValue = ref<string>('статус: уже нет')
 
-const pick = ref<null>(null)
+const pick = ref<BasPick>(null)
+
+const marked = ref<string>('')
 </script>
 
 <template>
@@ -218,6 +222,7 @@ const pick = ref<null>(null)
     <div class="selectPlace">
       <select
         class="SelectStyle"
+        style="height: 90px"
         v-model="typeSelect"
         multiple
       >
@@ -232,7 +237,6 @@ const pick = ref<null>(null)
     <div class="selectPlace">
       <select
         class="SelectStyle"
-        style="height: 50px"
         v-model="selected"
       >
         <option
@@ -300,6 +304,12 @@ const pick = ref<null>(null)
       />
     </div>
     <p style="margin-bottom: 20px">Вы выбрали: {{ pick }}</p>
+    <p
+      class="title"
+      style="color: blueviolet"
+    >
+      Выпадающие списки
+    </p>
   </div>
 </template>
 
@@ -373,7 +383,7 @@ const pick = ref<null>(null)
 
 .SelectStyle {
   width: 300px;
-  height: 90px;
+  height: 50px;
   padding: 10px;
   margin: 0 auto;
 }
