@@ -11,6 +11,10 @@ interface Option {
 type BasSelectType = 'A' | 'B' | 'C' | 'D' | ''
 type BasPick = 'Первый' | 'Второй' | null
 
+interface BasSelectedObject {
+  number: number
+}
+
 const message = ref<string>('')
 const multilineMessage = ref<string>('')
 const checked = ref<BasChecked>(true)
@@ -44,7 +48,11 @@ const dynamicFalseValue = ref<string>('статус: уже нет')
 
 const pick = ref<BasPick>(null)
 
-const marked = ref<string>('')
+const selectedObject = ref<BasSelectedObject | null>(null)
+
+const msg = ref<string>('')
+const age = ref<number>(0)
+const msgTrim = ref<string>('')
 </script>
 
 <template>
@@ -310,6 +318,76 @@ const marked = ref<string>('')
     >
       Выпадающие списки
     </p>
+    <div class="selectPlace">
+      <select
+        class="SelectStyle"
+        v-model="selectedObject"
+      >
+        <option :value="{ number: 123 }">123</option>
+      </select>
+    </div>
+    <div
+      class="selectedOption"
+      style="height: 40px; margin-bottom: 30px"
+    >
+      Выбрано: {{ selectedObject }}
+    </div>
+    <p class="title">Модификаторы</p>
+    <p
+      class="title"
+      style="color: brown; font-size: 25px"
+    >
+      .lazy
+    </p>
+    <input
+      class="window-style"
+      style="height: 30px"
+      type="text"
+      v-model.lazy="msg"
+    />
+    <div
+      class="text-output"
+      style="margin-bottom: 20px"
+    >
+      {{ msg }}
+    </div>
+    <p>Текст выводится не при каждом введении символа, а по завершению.</p>
+    <p
+      class="title"
+      style="color: brown; font-size: 25px"
+    >
+      .number
+    </p>
+    <input
+      class="window-style"
+      style="height: 30px"
+      type="text"
+      v-model.number="age"
+    />
+    <div
+      class="text-output"
+      style="margin-bottom: 20px"
+    >
+      Ваш возраст: {{ age }}
+    </div>
+    <p
+      class="title"
+      style="color: brown; font-size: 25px"
+    >
+      .trim
+    </p>
+    <input
+      class="window-style"
+      style="height: 30px"
+      type="text"
+      v-model.lazy.trim="msgTrim"
+    />
+    <div
+      class="text-output"
+      style="margin-bottom: 20px"
+    >
+      {{ msgTrim }}
+    </div>
   </div>
 </template>
 
@@ -323,7 +401,7 @@ const marked = ref<string>('')
 
 .circuit {
   width: 500px;
-  height: 2200px;
+  height: 2550px;
   margin: 0 auto;
   margin-bottom: 10px;
   border: 2px solid cornflowerblue;
@@ -332,7 +410,7 @@ const marked = ref<string>('')
 
 .text-output {
   width: 277px;
-  height: 24px;
+  height: 30px;
   border: 1px solid cornflowerblue;
   border-radius: 10px;
   padding: 0 10px;
@@ -343,6 +421,7 @@ const marked = ref<string>('')
 .window-style {
   width: 277px;
   height: 70px;
+  padding: 5px 10px;
   margin-bottom: 20px;
   cursor: pointer;
 }
@@ -366,7 +445,6 @@ const marked = ref<string>('')
   width: 20px;
   height: 20px;
   margin: 10px;
-
   cursor: pointer;
 }
 
