@@ -15,7 +15,7 @@ const selectType = ref('') //Это же не нужно типизироват�
       v-if / v-else
     </p>
     <div class="cloth">
-      <div v-if="workingDay">сегодня рабочий день</div>
+      <div v-if="workingDay === true">сегодня рабочий день</div>
       <div v-else>сегодня выходной день</div>
     </div>
   </div>

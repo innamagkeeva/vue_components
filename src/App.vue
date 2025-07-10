@@ -7,6 +7,7 @@ import ConditionalRendering from '@/components/ConditionalRendering.vue'
 import RenderingLists from '@/components/RenderingLists.vue'
 import EventHandling from '@/components/EventHandling.vue'
 import WorkingWithForms from '@/components/WorkingWithForms.vue'
+import KeyboardButtons from '@/components/KeyboardButtons.vue'
 </script>
 
 <template>
@@ -19,6 +20,7 @@ import WorkingWithForms from '@/components/WorkingWithForms.vue'
     <RenderingLists />
     <EventHandling />
     <WorkingWithForms />
+    <KeyboardButtons />
   </div>
 </template>
 <style>
