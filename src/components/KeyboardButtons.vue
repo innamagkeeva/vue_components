@@ -1,208 +1,83 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+const letters: string[] = [
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z',
+]
+const symbols: string[] = [' ', '.', ',', '!', '?']
 
-const result = ref('')
-function getResult(str: string): void {
-  result.value += str
+const outputText = ref('')
+
+const warningMessage = ref('')
+
+function addCharacter(char: string): void {
+  const lastChar = outputText.value.slice(-1)
+  const forbiddenAfterDot = [' ', '.', '?', '!', ',']
+  if (lastChar === '.' && forbiddenAfterDot.includes(char)) {
+    alert((warningMessage.value = `Нельзя ставить "${char}" после точки`))
+    return
+  }
+  warningMessage.value = ''
+  outputText.value += char
 }
-function deleteSign(): void {
-  result.value = result.value.slice(0, -1)
+
+function deleteCharacter(): void {
+  outputText.value = outputText.value.slice(0, -1)
 }
 </script>
-
 <template>
   <div class="wrapper">
     <div class="wrapper__inside">
       <button
         class="button"
-        @click="getResult('A')"
+        v-for="letter in letters"
+        :key="letter"
+        @click="addCharacter(letter)"
       >
-        A
+        {{ letter }}
       </button>
       <button
-        class="button"
-        @click="getResult('B')"
+        v-for="symbol in symbols"
+        :key="symbol"
+        :class="symbol === ' ' ? 'button_space' : 'button'"
+        @click="addCharacter(symbol)"
       >
-        B
+        {{ symbol === ' ' ? ' ' : symbol }}
       </button>
       <button
-        class="button"
-        @click="getResult('C')"
+        class="button button_delete"
+        @click="deleteCharacter"
       >
-        C
-      </button>
-      <button
-        class="button"
-        @click="getResult('D')"
-      >
-        D
-      </button>
-      <button
-        class="button"
-        @click="getResult('F')"
-      >
-        F
-      </button>
-      <button
-        class="button"
-        @click="getResult('G')"
-      >
-        G
-      </button>
-      <button
-        class="button"
-        @click="getResult('H')"
-      >
-        H
-      </button>
-      <button
-        class="button"
-        @click="getResult('I')"
-      >
-        I
-      </button>
-      <button
-        class="button"
-        @click="getResult('J')"
-      >
-        J
-      </button>
-      <button
-        class="button"
-        @click="getResult('K')"
-      >
-        K
-      </button>
-      <button
-        class="button"
-        @click="getResult('L')"
-      >
-        L
-      </button>
-      <button
-        class="button"
-        @click="getResult('M')"
-      >
-        M
-      </button>
-      <button
-        class="button"
-        @click="getResult('N')"
-      >
-        N
-      </button>
-      <button
-        class="button"
-        @click="getResult('O')"
-      >
-        O
-      </button>
-      <button
-        class="button"
-        @click="getResult('P')"
-      >
-        P
-      </button>
-      <button
-        class="button"
-        @click="getResult('Q')"
-      >
-        Q
-      </button>
-      <button
-        class="button"
-        @click="getResult('R')"
-      >
-        R
-      </button>
-      <button
-        class="button"
-        @click="getResult('S')"
-      >
-        S
-      </button>
-      <button
-        class="button"
-        @click="getResult('T')"
-      >
-        T
-      </button>
-      <button
-        class="button"
-        @click="getResult('U')"
-      >
-        U
-      </button>
-      <button
-        class="button"
-        @click="getResult('V')"
-      >
-        V
-      </button>
-      <button
-        class="button"
-        @click="getResult('W')"
-      >
-        W
-      </button>
-      <button
-        class="button"
-        @click="getResult('X')"
-      >
-        X
-      </button>
-      <button
-        class="button"
-        @click="getResult('Y')"
-      >
-        Y
-      </button>
-      <button
-        class="button"
-        @click="getResult('Z')"
-      >
-        Z
-      </button>
-      <button
-        class="button_space"
-        @click="getResult(' ')"
-      ></button>
-      <button
-        class="button"
-        v-if="result.length > 0"
-        @click="getResult('.')"
-      >
-        .
-      </button>
-      <button
-        class="button"
-        v-if="result.length > 0 && result.slice(-1) !== '.'"
-        @click="getResult(',')"
-      >
-        ,
-      </button>
-      <button
-        class="button"
-        v-if="result.length > 0 && result.slice(-1) !== '.'"
-        @click="getResult('!')"
-      >
-        !
-      </button>
-      <button
-        class="button"
-        v-if="result.length > 0 && result.slice(-1) !== '.'"
-        @click="getResult('?')"
-      >
-        ?
-      </button>
-      <button
-        class="button_delete"
-        @click="deleteSign"
-      >
-        DELETE
+        Удалить
       </button>
     </div>
-    <h1 class="result">{{ result }}</h1>
+    <div class="output">
+      {{ outputText }}
+    </div>
   </div>
 </template>
 
@@ -212,9 +87,8 @@ function deleteSign(): void {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-
   width: 500px;
-  height: 600px;
+  height: 700px;
   border: 2px solid green;
   margin: 0 auto;
   padding: 10px 20px;
@@ -243,5 +117,18 @@ button {
 
 .button_delete {
   width: 100px;
+}
+
+.button_delete:hover {
+  background-color: darkred;
+}
+
+.output {
+  width: 400px;
+  height: 40px;
+  margin: 0 auto;
+  font-size: 24px;
+  border: 2px solid green;
+  padding: 10px;
 }
 </style>
