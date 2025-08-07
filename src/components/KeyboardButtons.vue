@@ -33,12 +33,10 @@ const symbols: string[] = [' ', '.', ',', '!', '?']
 const outputText = ref('')
 
 const warningMessage = ref('')
-
 function addCharacter(char: string): void {
   const lastChar = outputText.value.slice(-1)
-  const forbiddenAfterDot = [' ', '.', '?', '!', ',']
-  if (lastChar === '.' && forbiddenAfterDot.includes(char)) {
-    alert((warningMessage.value = `Нельзя ставить "${char}" после точки`))
+  if (lastChar === '.' && symbols.includes(char)) {
+    warningMessage.value = `Нельзя ставить "${char}" после точки`
     return
   }
   warningMessage.value = ''
@@ -66,7 +64,7 @@ function deleteCharacter(): void {
         :class="symbol === ' ' ? 'button_space' : 'button'"
         @click="addCharacter(symbol)"
       >
-        {{ symbol === ' ' ? ' ' : symbol }}
+        {{ symbol }}
       </button>
       <button
         class="button button_delete"
@@ -77,6 +75,12 @@ function deleteCharacter(): void {
     </div>
     <div class="output">
       {{ outputText }}
+    </div>
+    <div
+      v-if="warningMessage"
+      class="warning"
+    >
+      {{ warningMessage }}
     </div>
   </div>
 </template>
@@ -123,12 +127,20 @@ button {
   background-color: darkred;
 }
 
-.output {
+.output,
+.warning {
   width: 400px;
   height: 40px;
   margin: 0 auto;
+
   font-size: 24px;
   border: 2px solid green;
   padding: 10px;
+}
+
+.warning {
+  color: red;
+  border: 1px solid red;
+  font-size: 18px;
 }
 </style>
