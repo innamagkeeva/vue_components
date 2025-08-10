@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import DisplayLetters from '@/components/DisplayLetters.vue'
 const letters: string[] = [
   'A',
   'B',
@@ -50,14 +51,14 @@ function deleteCharacter(): void {
 <template>
   <div class="wrapper">
     <div class="wrapper__inside">
-      <button
-        class="button"
+      <DisplayLetters
+        :letter="letters"
         v-for="letter in letters"
         :key="letter"
-        @click="addCharacter(letter)"
-      >
-        {{ letter }}
-      </button>
+        :char="letter"
+        @addendum="addCharacter"
+      />
+
       <button
         v-for="symbol in symbols"
         :key="symbol"
