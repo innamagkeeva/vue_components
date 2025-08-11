@@ -52,11 +52,10 @@ function deleteCharacter(): void {
   <div class="wrapper">
     <div class="wrapper__inside">
       <DisplayLetters
-        :letter="letters"
         v-for="letter in letters"
         :key="letter"
         :char="letter"
-        @addendum="addCharacter"
+        @addingLetter="addCharacter"
       />
 
       <button
@@ -74,14 +73,16 @@ function deleteCharacter(): void {
         Удалить
       </button>
     </div>
-    <div class="output">
-      {{ outputText }}
-    </div>
-    <div
-      v-if="warningMessage"
-      class="warning"
-    >
-      {{ warningMessage }}
+    <div class="wrap">
+      <div class="output">
+        {{ outputText }}
+      </div>
+      <div
+        v-if="warningMessage"
+        class="warning"
+      >
+        {{ warningMessage }}
+      </div>
     </div>
   </div>
 </template>
@@ -90,8 +91,6 @@ function deleteCharacter(): void {
 .wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
   width: 500px;
   height: 700px;
   border: 2px solid green;
@@ -128,6 +127,11 @@ button {
   background-color: darkred;
 }
 
+.wrap {
+  position: relative;
+  padding-bottom: 30px;
+}
+
 .output,
 .warning {
   width: 400px;
@@ -143,5 +147,7 @@ button {
   color: red;
   border: 1px solid red;
   font-size: 18px;
+  position: absolute;
+  bottom: 20px;
 }
 </style>
